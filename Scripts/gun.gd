@@ -17,7 +17,7 @@ func shoot(target):
 	# Create tween for bullet position to target position
 	var tween = get_tree().create_tween()
 	var destroy_timer = get_tree().create_timer(0.1)
-	tween.tween_property(new_bullet, "global_position", target.global_position, 0.01)
+	tween.tween_property(new_bullet, "global_position", target.global_position, 0.05)
 	await destroy_timer.timeout
 	new_bullet.queue_free()
 	

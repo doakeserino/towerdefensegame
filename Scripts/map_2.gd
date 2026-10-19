@@ -8,10 +8,10 @@ var lives : int = 100
 
 func _ready():
 	for i in range (1, 10):
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.1).timeout
 		spawn_loop(enemy_to_spawn)
 		
-func _input(event):
+func _unhandled_input(event):
 	if Input.is_action_just_pressed("place"):
 		var tower = selected_tower.instantiate()
 		add_child(tower)

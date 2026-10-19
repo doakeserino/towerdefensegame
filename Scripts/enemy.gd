@@ -1,6 +1,9 @@
 extends RigidBody2D
 
 @onready var hitbox = $Hitbox
+@onready var collision_shape_2d = $CollisionShape2D
+@onready var sprite_2d = $Sprite2D
+
 
 const SPEED = 500.0
 const DAMAGE = 10
@@ -14,7 +17,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if health < 1:
-		queue_free()
+		visible = false
+		hitbox.monitoring = false
+		collision_shape_2d.disabled = true
+		
 
 func take_damage(damage : int):
 	health -= damage
