@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://7jf5vjqu65ig"]
 
+[ext_resource type="Script" uid="uid://wddgysa4pttx" path="res://Scripts/bullet.gd" id="1_xjght"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(8, 8)
 
@@ -10,12 +12,15 @@ gradient = SubResource("Gradient_4mw4s")
 width = 8
 height = 8
 
-[node name="Bullet" type="RigidBody2D" unique_id=781629532]
+[node name="Bullet" type="RigidBody2D" unique_id=781629532 groups=["bullet"]]
 collision_layer = 2
 gravity_scale = 0.0
+script = ExtResource("1_xjght")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1144772923]
 shape = SubResource("RectangleShape2D_yf5fn")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=522441491]
 texture = SubResource("GradientTexture2D_g4v7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

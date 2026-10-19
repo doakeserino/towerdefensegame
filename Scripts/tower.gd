@@ -5,9 +5,10 @@ extends RigidBody2D
 var has_enemies : bool
 var enemies = []
 var target
+var shooting : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,10 +18,12 @@ func _process(_delta):
 		target = enemies[0]
 	else:
 		has_enemies = false
-	while has_enemies:
+	if has_enemies and not shooting:
 		shoot()
 		var cooldown = get_tree().create_timer(1.0)
 		await cooldown.timeout
+		shooting = false
+
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Damages"):
 		enemies.append(body)
