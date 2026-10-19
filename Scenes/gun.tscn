@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cj38xfcvck70j"]
+
+[ext_resource type="Script" uid="uid://cjg3cjn34se2h" path="res://Scripts/gun.gd" id="1_nxj5y"]
+
+[sub_resource type="Gradient" id="Gradient_3dt2y"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_3dt2y")
+width = 16
+height = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(16, 6)
+
+[node name="Gun" type="RigidBody2D" unique_id=247899500]
+gravity_scale = 0.0
+script = ExtResource("1_nxj5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1384619374]
+scale = Vector2(1, 0.375)
+texture = SubResource("GradientTexture2D_g4v7s")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1700207750]
+shape = SubResource("RectangleShape2D_yf5fn")

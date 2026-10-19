@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://q1jowus2nwed"]
+
+[ext_resource type="Script" uid="uid://dknfo881bdxug" path="res://Scripts/tower.gd" id="1_ndpwd"]
+[ext_resource type="PackedScene" uid="uid://cj38xfcvck70j" path="res://Scenes/gun.tscn" id="2_mh5eo"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yf5fn"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 100.0
+
+[node name="Tower" type="RigidBody2D" unique_id=1751230322]
+gravity_scale = 0.0
+script = ExtResource("1_ndpwd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=588620173]
+texture = SubResource("PlaceholderTexture2D_yf5fn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1759864249]
+shape = SubResource("RectangleShape2D_g4v7s")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1742059250]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=315032238]
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="Gun" parent="." unique_id=247899500 instance=ExtResource("2_mh5eo")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

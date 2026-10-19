@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://4vc6xb34ywrm"]
+
+[node name="Map" type="Node2D" unique_id=875963661]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1907846917]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(2.1658838e-07, 0.491655, 2.8878452e-07, 1)
+
+[node name="Paths" type="Node2D" parent="." unique_id=1743279625]
+
+[node name="ColorRect2" type="ColorRect" parent="Paths" unique_id=696994253]
+offset_top = 300.0
+offset_right = 600.0
+offset_bottom = 340.0
+color = Color(0.34656936, 0.34656933, 0.34656933, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Paths" unique_id=1856113441]
+offset_left = 600.0
+offset_top = 300.0
+offset_right = 800.0
+offset_bottom = 340.0
+rotation = 1.5707964
+color = Color(0.34656936, 0.34656933, 0.34656933, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Paths" unique_id=61259949]
+offset_left = 560.0
+offset_top = 460.0
+offset_right = 1920.0
+offset_bottom = 500.0
+color = Color(0.34656936, 0.34656933, 0.34656933, 1)
