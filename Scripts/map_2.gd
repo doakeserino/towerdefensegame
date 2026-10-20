@@ -1,21 +1,22 @@
 extends Node2D
-var selected_tower : PackedScene = preload("res://Scenes/tower.tscn")
+var selected_tower : PackedScene = preload("res://Scenes/tower_1.tscn")
 var enemy_to_spawn : PackedScene = preload("res://Scenes/enemy.tscn")
 var lives : int = 100
-@onready var target_1 = $Target1
+
 @onready var markers = $Markers
+@onready var target_1 = $Markers/Target1
 
 
 func _ready():
 	for i in range (1, 10):
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.5).timeout
 		spawn_loop(enemy_to_spawn)
 		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("place"):
 		var tower = selected_tower.instantiate()
 		add_child(tower)
-		tower.position = event.position / 2
+		tower.global_position = event.global_position
 
 func _on_path_area_body_entered(body):
 	if body.is_in_group("Tower"):

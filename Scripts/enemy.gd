@@ -1,3 +1,4 @@
+class_name enemy_class
 extends RigidBody2D
 
 @onready var hitbox = $Hitbox

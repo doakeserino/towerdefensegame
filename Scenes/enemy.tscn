@@ -8,7 +8,7 @@ size = Vector2(20, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-radius = 15.0
+radius = 18.0
 
 [node name="Enemy" type="RigidBody2D" unique_id=1528339223 groups=["Damages"]]
 collision_layer = 2
