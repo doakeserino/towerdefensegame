@@ -1,16 +1,29 @@
 extends Node2D
 var selected_tower : PackedScene = preload("res://Scenes/tower_1.tscn")
 var enemy_to_spawn : PackedScene = preload("res://Scenes/enemy.tscn")
-var lives : int = 100
-
+var lives 
+var money 
+var wave 
 @onready var markers = $Markers
 @onready var target_1 = $Markers/Target1
 
 
 func _ready():
-	for i in range (1, 10):
-		await get_tree().create_timer(0.5).timeout
-		spawn_loop(enemy_to_spawn)
+	set_stats()
+	
+	if wave == 1:
+		for i in range (0, 10):
+			await get_tree().create_timer(0.5).timeout
+			spawn_loop(enemy_to_spawn)
+		wave += 1
+		print(wave)
+	if wave == 2:
+		for i in range (0 ,20):
+			await get_tree().create_timer(0.66).timeout
+			for j in range (0, 3):
+				await get_tree().create_timer(0.2).timeout
+				spawn_loop(enemy_to_spawn)
+	
 		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("place"):
@@ -33,10 +46,18 @@ func spawn_loop(packed_enemy):
 		var distance = enemy.position.distance_to(target_position)
 		tween.tween_property(enemy, "global_position", target_position, distance / enemy.SPEED)
 		await tween.finished
-		print("Arrived", target_marker)
 		target_marker += 1
-	if enemy.global_position == markers.get_child(2).global_position:
+	if enemy.global_position == markers.get_child(2).global_position and enemy.visible:
 		print("END")
-		lives -= enemy.DAMAGE
+		GlobalStats.stats_change(GlobalStats.stats["lives"], enemy.DAMAGE)
 		print(lives)
 		enemy.queue_free()
+func change_stats():
+	GlobalStats.stats_changed.connect(set_stats)
+	set_stats()
+	
+func set_stats():
+	lives = GlobalStats.stats["lives"]
+	money = GlobalStats.stats["money"]
+	wave = GlobalStats.stats["wave"]
+	print(GlobalStats.stats["money"])
